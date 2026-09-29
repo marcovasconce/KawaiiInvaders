@@ -1,0 +1,30 @@
+# Combate do Tung
+
+O Inspector do node Boss, em cenas/boss_arena.tscn, concentra os ajustes.
+
+- Vida: 300. Postura: 100. Parry: 3 de dano e 25 de postura; tiro normal: 1 de dano e 2 de postura.
+- Postura quebrada: limpa os perigos ativos, cancela ataques, encerra o berserker e abre 4 segundos recebendo 3 vezes mais dano.
+- Berserker: a cada 30 de dano acumulado fora do stun (10% da vida maxima), faz um grito de 1,3 segundo, fica vermelho e ganha aura animada. Nesse grito os ataques param e o boss nao recebe dano. Depois, movimento x1,65, intervalo de ataque x0,65 e velocidade dos bastoes x1,18. So a quebra de postura encerra a furia. O contador de dano reinicia apos o stun; o dano bonus durante o stun nao causa furia imediata.
+- Segunda fase: aos 50% de vida. Se cruzar o limite durante um stun, a transicao espera terminar a janela de vulnerabilidade. A fase continua depois que a furia termina.
+- Fase 2 alterna ataques normais (3 bastoes / 1 bastao) e tres especiais: chuva com corredor de 80 pixels; espiral com quatro ondas de quatro cristais e abertura de dois setores que gira; duas rupturas verticais com corredor que muda de lugar.
+- Ataques globais avisam por 1 segundo. Os cristais vermelhos da chuva e da espiral, assim como as colunas de energia, nao podem ser aparados: use a brecha ou dash. Somente os bastoes normais podem ser aparados. O auto-parry em sequencia vale apenas para a rajada normal.
+- Dash: 0,18 segundo de movimento, invulnerabilidade durante todo o movimento e 0,06 segundo de tolerancia ao terminar. Recarga de 0,55 segundo, indicada na arena. O jogador fica limitado as bordas da arena.
+- Dash atraves de cristal vermelho: a colisao durante em_dash absorve um cristal da chuva ou espiral e carrega exatamente o primeiro tiro seguinte do Makoto. Um anel azul pulsante acompanha a carga; o disparo maior causa 12 de dano e 12 de postura por padrao. O segundo tiro da rajada continua normal. Encostar no cristal fora do dash nao concede carga. Os valores ficam no Inspector do jogador, na categoria Carga do Makoto.
+- Derrota: limpa os ataques e toca a animacao final antes da tela de vitoria.
+- A furia, a fase e a postura quebrada sao comunicadas pela animacao, aura e barras, sem texto de estado. Avisos de texto aparecem somente antes dos ataques globais.
+- Ajuste da espiral: ondas_espiral=4, intervalo_ondas_espiral=0,65 segundo e velocidade_espiral=115. Cada onda tem quatro cristais e dois setores vizinhos vazios. Os cristais vermelhos da chuva e da espiral nao aceitam parry; o dash continua protegendo.
+- A vitoria do boss abre vitoria_makoto.tscn. A morte do Makoto abre derrota_makoto.tscn. Se ele morreu antes de encontrar o Tung, essa tela esconde o boss e o botao de repetir volta para a fase dos aliens; na arena, volta para o boss.
+
+## Animacoes
+
+Arquivo: assets]/Assets Space Invades/Sprites/tung_boss_completo.png. Grade 4 x 6, 1024 x 1536, celulas de 256 x 256, fundo transparente. Linhas: andar, arremessar, stun, gritar, conjurar, morrer. Aura e ondas do grito sao animadas pelo jogo para acompanharem o estado de furia. Nenhum bastao esta incorporado ao corpo.
+
+Criado com a ferramenta integrada image_gen; referencia: tung_animacoes_sem_bastao.png. Prompt final:
+
+> Use case: identity-preserve. Asset type: production sprite sheet for a Godot pixel-art boss. Image 1 is character and animation reference. Expand this animation set into one TRANSPARENT PNG sprite sheet, exactly FOUR columns and SIX rows, 24 equally sized SQUARE cells, canvas 1024x1536 (256x256 per cell). No visible grid. Exactly one full-body character per cell. The SAME wooden Tung in every frame: tall cylindrical brown log torso/head, huge white eyes, eyebrows and mouth, thin wooden limbs, empty hands. Match the source's crisp pixel art, brown shades, facial identity and size. Never draw any club, baton, weapon or separate projectile anywhere. Keep each full character within its cell with 16px safety margins, feet at the same baseline for standing poses. All rows have four sequential animation frames. ROW 1: original walking cycle, alternating feet. ROW 2: original throwing gesture with EMPTY hands, windup then extended arm then recovery. ROW 3: original broken-posture stun cycle, hunched wobble and small blue dizzy sparks. ROW 4: new furious ROAR animation, crouching with clenched fists then face tilted up and mouth wide open shouting, angry eyebrows, chest expanded. ROW 5: new magic global-attack CAST animation, raise both empty hands overhead then extend arms outward forcefully, angry commanding expression, no objects or effects in the hands. ROW 6: new DEFEAT animation, stagger, kneel, collapse on side, final lying defeated on ground; non-gory wood character. Character identity remains exact across all rows. Transparent background with real alpha, no scenery, no labels, no letters, no borders. Red rage aura will be rendered in engine so do not bake it into the sprite sheet.
+
+Novo sprite: assets]/Assets Space Invades/Sprites/cristal_chuva_tung.png, gerado com a mesma ferramenta integrada. Prompt: "Use case: stylized-concept. Asset type: ONE small Godot 2D pixel-art projectile sprite for an UNPARRYABLE boss attack. Input Image 1 is only a pixel-art style reference; make a COMPLETELY DIFFERENT silhouette from its wooden club. Create a single vertical, sharp crimson crystal thunderbolt / falling cursed shard, jagged pointed tip downward, black-purple core, vivid red edge glow, a few small detached red spark pixels. Center it on a square transparent canvas with generous empty margins. Crisp hard-edge pixel art, readable at 18x18 pixels, dramatic and dangerous. Genuine transparent background, no wooden club, no text, no sheet, no scenery, no border."
+
+## Verificacao
+
+Teste de integracao: tests/boss_combate_test.gd. Execute com Godot --headless --path . --script res://tests/boss_combate_test.gd. Cobre limites de furia e fase, dano no stun, cancelamento e termino dos tres padroes, auto-parry, morte do boss e colisao de uma coluna real durante/depois dos i-frames.

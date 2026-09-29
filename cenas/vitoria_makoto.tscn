@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://cupohtr5m7kj3"]
+
+[ext_resource type="Script" uid="uid://r7q5b0r803r4" path="res://cenas/resultado_makoto.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://b8qxohj7kh7a1" path="res://assets]/Assets Space Invades/fonts/atari-classic-font/AtariClassic-gry3.ttf" id="2_font"]
+[ext_resource type="Texture2D" uid="uid://cqvv2t2e1b3qt" path="res://assets]/Assets Space Invades/Sprites/hframesmakoto_clean.png" id="3_makoto"]
+[ext_resource type="Texture2D" uid="uid://dsqgpkoqh3yrq" path="res://assets]/Assets Space Invades/Sprites/tung_boss_completo.png" id="4_tung"]
+[ext_resource type="Script" path="res://cenas/botao_menu_estilizado.gd" id="5_botao"]
+
+[sub_resource type="StyleBoxFlat" id="Painel"]
+bg_color = Color(0.02, 0.06, 0.16, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.24, 0.67, 0.98, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="Botao"]
+bg_color = Color(0.08, 0.24, 0.47, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.82, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="BotaoHover"]
+bg_color = Color(0.12, 0.4, 0.65, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65, 0.95, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="VitoriaMakoto" type="Control" unique_id=837223909]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Cartao" type="Panel" parent="." unique_id=1628919933]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 16.0
+offset_right = 244.0
+offset_bottom = 251.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Painel")
+
+[node name="Titulo" type="Label" parent="." unique_id=3179656]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 29.0
+offset_right = 236.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.65, 0.92, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0.08, 0.18, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "VITORIA"
+horizontal_alignment = 1
+
+[node name="Subtitulo" type="Label" parent="." unique_id=278323503]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 57.0
+offset_right = 236.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.42, 0.76, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 8
+text = "MAKOTO VENCEU"
+horizontal_alignment = 1
+
+[node name="ArteMakoto" type="Sprite2D" parent="." unique_id=1975264026]
+texture_filter = 1
+position = Vector2(122, 124)
+scale = Vector2(0.36, 0.36)
+texture = ExtResource("3_makoto")
+hframes = 6
+vframes = 5
+frame = 26
+
+[node name="TungDerrotado" type="Sprite2D" parent="." unique_id=972661437]
+modulate = Color(0.55, 0.62, 0.82, 1)
+texture_filter = 1
+position = Vector2(184, 151)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("4_tung")
+hframes = 4
+vframes = 6
+frame = 23
+
+[node name="Mensagem" type="Label" parent="." unique_id=867433707]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 183.0
+offset_right = 236.0
+offset_bottom = 195.0
+theme_override_colors/font_color = Color(0.74, 0.88, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 7
+text = "TRIPLE T PERDEU"
+horizontal_alignment = 1
+
+[node name="JogarNovamente" type="Button" parent="." unique_id=75103782]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 202.0
+offset_right = 222.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("Botao")
+theme_override_styles/hover = SubResource("BotaoHover")
+theme_override_styles/focus = SubResource("BotaoHover")
+text = "NOVO JOGO"
+script = ExtResource("5_botao")
+cor_acento = Color(0.25, 0.82, 1, 1)
+
+[node name="Menu" type="Button" parent="." unique_id=983254511]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 229.0
+offset_right = 190.0
+offset_bottom = 247.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("Botao")
+theme_override_styles/hover = SubResource("BotaoHover")
+theme_override_styles/focus = SubResource("BotaoHover")
+text = "MENU"
+script = ExtResource("5_botao")
+cor_acento = Color(0.25, 0.82, 1, 1)
+
+[connection signal="pressed" from="JogarNovamente" to="." method="_on_jogar_novamente_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

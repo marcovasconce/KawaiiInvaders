@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cf2dighn6iqye"
+path="res://.godot/imported/EscolherOpcao.mp3-fd7e25212a72430739a1ebc74b50d237.mp3str"
+
+[deps]
+
+source_file="res://assets]/Assets Space Invades/sfx/EscolherOpcao.mp3"
+dest_files=["res://.godot/imported/EscolherOpcao.mp3-fd7e25212a72430739a1ebc74b50d237.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

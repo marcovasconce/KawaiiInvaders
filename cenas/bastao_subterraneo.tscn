@@ -1,0 +1,28 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://cenas/bastao_subterraneo.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets]/Assets Space Invades/Sprites/bastao_espinhos_tung.png" id="2_sprite"]
+
+[sub_resource type="RectangleShape2D" id="BastaoShape"]
+size = Vector2(18, 70)
+
+[node name="BastaoSubterraneo" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Haste" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Haste"]
+texture_filter = 1
+position = Vector2(0, -34)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("2_sprite")
+
+[node name="Area2D" type="Area2D" parent="Haste"]
+position = Vector2(0, -34)
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Haste/Area2D"]
+shape = SubResource("BastaoShape")
+
+[connection signal="body_entered" from="Haste/Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c8n8qhk5ugvt3"]
+
+[ext_resource type="Script" uid="uid://btb0fsqn1dri2" path="res://cenas/grupo_aliens.gd" id="1_xtcdv"]
+
+[node name="grupoAliens" type="Node" unique_id=727872182]
+script = ExtResource("1_xtcdv")
+
+[node name="TimerDescida" type="Timer" parent="." unique_id=1343490038]
+wait_time = 5.0
+autostart = true
+
+[node name="TimerDisparo" type="Timer" parent="." unique_id=604304860]
+wait_time = 3.0
+autostart = true
+
+[node name="TimerBonus" type="Timer" parent="." unique_id=760081250]
+
+[connection signal="timeout" from="TimerDescida" to="." method="_on_timer_descida_timeout"]
+[connection signal="timeout" from="TimerDisparo" to="." method="_on_timer_disparo_timeout"]
+[connection signal="timeout" from="TimerDisparo" to="." method="_on_timer_descida_timeout"]
+[connection signal="timeout" from="TimerBonus" to="." method="_on_timer_bonus_timeout"]

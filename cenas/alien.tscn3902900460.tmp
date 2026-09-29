@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://dp7gm1h32wdua"]
+
+[ext_resource type="Script" uid="uid://r8gw1snig3a5" path="res://cenas/alien.gd" id="1_o4thi"]
+[ext_resource type="Texture2D" uid="uid://c5wbdka5lc0qn" path="res://assets]/Assets Space Invades/Sprites/alien1.png" id="2_5lcmi"]
+[ext_resource type="Texture2D" uid="uid://dojcf4uy5d7d8" path="res://assets]/Assets Space Invades/Sprites/kuromi.png" id="2_jiako"]
+[ext_resource type="Texture2D" uid="uid://dbk0ligfgpdl3" path="res://assets]/Assets Space Invades/Sprites/images-removebg-preview.png" id="3_jiako"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8342"]
+size = Vector2(11, 8)
+
+[sub_resource type="Animation" id="Animation_v1d1r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Kuromi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_1yycb"]
+resource_name = "alien"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Kuromi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_jdavq"]
+resource_name = "destroy"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Kuromi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"elimination"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vhipe"]
+_data = {
+&"RESET": SubResource("Animation_v1d1r"),
+&"alien": SubResource("Animation_1yycb"),
+&"destroy": SubResource("Animation_jdavq")
+}
+
+[node name="alien" type="CharacterBody2D" unique_id=1778134094 groups=["aliens"]]
+script = ExtResource("1_o4thi")
+metadata/_edit_group_ = true
+
+[node name="Kuromi" type="Sprite2D" parent="." unique_id=889007328]
+scale = Vector2(-0.040000483, 0.040000074)
+texture = ExtResource("2_jiako")
+
+[node name="explosao" type="Sprite2D" parent="." unique_id=1913316366]
+visible = false
+scale = Vector2(-0.040000483, 0.040000074)
+texture = ExtResource("3_jiako")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1509099651]
+visible = false
+texture = ExtResource("2_5lcmi")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=498352554]
+scale = Vector2(1.3600003, 1.5199996)
+shape = SubResource("RectangleShape2D_l8342")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=724324279]
+libraries/ = SubResource("AnimationLibrary_vhipe")
+autoplay = &"alien"
+
+[node name="timerMovimento" type="Timer" parent="." unique_id=1938649387]
+wait_time = 0.5
+
+[node name="spawnPoint" type="Marker2D" parent="." unique_id=2036385438]
+position = Vector2(0, 4)
+
+[connection signal="timeout" from="timerMovimento" to="." method="_on_timer_movimento_timeout"]

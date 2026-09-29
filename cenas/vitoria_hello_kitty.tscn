@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://btimjtqqmgrui"]
+
+[ext_resource type="FontFile" uid="uid://b8qxohj7kh7a1" path="res://assets]/Assets Space Invades/fonts/atari-classic-font/AtariClassic-gry3.ttf" id="1_font"]
+[ext_resource type="Script" uid="uid://d3g43rkqjk4hj" path="res://cenas/game_over.gd" id="2_script"]
+[ext_resource type="Texture2D" uid="uid://xbtsqa0o78dv" path="res://assets]/Assets Space Invades/Sprites/rpg_maker_xp_sprite___hello_kitty__red__by_kittykun123_dajyaga-fullview-removebg-preview.png" id="3_kitty"]
+[ext_resource type="Script" path="res://cenas/botao_menu_estilizado.gd" id="4_botao"]
+
+[sub_resource type="StyleBoxFlat" id="PainelVitoria"]
+bg_color = Color(0.12, 0.025, 0.12, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.55, 0.85, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="VitoriaHelloKitty" type="Node2D" unique_id=1743260821]
+script = ExtResource("2_script")
+
+[node name="ArteKitty" type="Sprite2D" parent="." unique_id=268358948]
+texture_filter = 1
+position = Vector2(127, 47)
+scale = Vector2(0.86, 0.86)
+texture = ExtResource("3_kitty")
+hframes = 4
+vframes = 4
+frame = 5
+
+[node name="Painel" type="PanelContainer" parent="." unique_id=71135624]
+offset_left = 24.0
+offset_top = 88.0
+offset_right = 242.0
+offset_bottom = 138.0
+theme_override_styles/panel = SubResource("PainelVitoria")
+
+[node name="Margem" type="MarginContainer" parent="Painel" unique_id=1639082697]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 7
+
+[node name="Titulo" type="Label" parent="Painel/Margem" unique_id=1378902914]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.68, 0.88, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 8
+text = "VITORIA!
+HELLO KITTY SALVOU O DIA!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DicaSecreta" type="Label" parent="." unique_id=598584489]
+offset_left = 19.0
+offset_top = 155.0
+offset_right = 235.0
+offset_bottom = 183.0
+theme_override_colors/font_color = Color(0.9935855, 0.9307135, 1.540184e-06, 0.9019608)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 7
+text = "MAS... QUE TAL APERTAR C
+QUANDO FOR SER ATINGIDO?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=310332960]
+offset_left = 35.0
+offset_top = 199.0
+offset_right = 219.0
+offset_bottom = 226.0
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 11
+text = "JOGAR NOVAMENTE"
+script = ExtResource("4_botao")
+cor_acento = Color(0.95, 0.49, 0.84, 1)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

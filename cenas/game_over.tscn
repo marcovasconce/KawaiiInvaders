@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://d1ytfxp6ckchp"]
+
+[ext_resource type="FontFile" uid="uid://b8qxohj7kh7a1" path="res://assets]/Assets Space Invades/fonts/atari-classic-font/AtariClassic-gry3.ttf" id="1_sc4lk"]
+[ext_resource type="Script" uid="uid://d3g43rkqjk4hj" path="res://cenas/game_over.gd" id="1_un0q3"]
+[ext_resource type="Texture2D" uid="uid://duul6vgsyy3w4" path="res://assets]/Assets Space Invades/Sprites/hello_kitty_derrotada.png" id="2_kitty"]
+[ext_resource type="Script" path="res://cenas/botao_menu_estilizado.gd" id="3_botao"]
+
+[node name="GameOver" type="Node2D" unique_id=1310960758]
+script = ExtResource("1_un0q3")
+
+[node name="ArteKitty" type="Sprite2D" parent="." unique_id=1819612584]
+texture_filter = 1
+position = Vector2(127, 55)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("2_kitty")
+
+[node name="Label" type="Label" parent="." unique_id=996905035]
+offset_left = 24.0
+offset_top = 96.0
+offset_right = 232.0
+offset_bottom = 150.0
+theme_override_fonts/font = ExtResource("1_sc4lk")
+text = "VOCE MATOU
+A HELLO KITTY
+NAOOOOOOO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=564870211]
+visible = false
+offset_left = 200.0
+offset_top = 240.0
+offset_right = 472.0
+offset_bottom = 294.0
+scale = Vector2(0.18181817, 0.24000001)
+theme_override_fonts/font = ExtResource("1_sc4lk")
+text = "+55 85 99819-5704"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1693340573]
+offset_left = 56.0
+offset_top = 160.0
+offset_right = 208.0
+offset_bottom = 184.0
+theme_override_fonts/font = ExtResource("1_sc4lk")
+text = "REINICIAR"
+script = ExtResource("3_botao")
+cor_acento = Color(0.92, 0.36, 0.57, 1)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://kj3klw1jxwbt"]
+
+[ext_resource type="Script" uid="uid://dubjmixb5cyn5" path="res://cenas/disparo.gd" id="1_a5abq"]
+[ext_resource type="Texture2D" uid="uid://dhmjgplhn1c3n" path="res://assets]/Assets Space Invades/Sprites/laco.png" id="2_a5abq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8o4j"]
+size = Vector2(0.838562, 5.5729165)
+
+[node name="Disparo" type="Node2D" unique_id=1534074150]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1603964060]
+script = ExtResource("1_a5abq")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=2091649538]
+position = Vector2(0, -3.5)
+scale = Vector2(0.016872153, -0.020813324)
+texture = ExtResource("2_a5abq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=271832364]
+position = Vector2(0, -3.5)
+scale = Vector2(10.719999, 1.25)
+shape = SubResource("RectangleShape2D_j8o4j")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

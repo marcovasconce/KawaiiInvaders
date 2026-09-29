@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://c00isbjkidfob"]
+
+[ext_resource type="Script" uid="uid://42f4p3p6gltw" path="res://cenas/main.gd" id="1_5wwvk"]
+[ext_resource type="PackedScene" uid="uid://ckxelugo8ugwl" path="res://cenas/jogador.tscn" id="1_t4ukd"]
+[ext_resource type="PackedScene" uid="uid://c8n8qhk5ugvt3" path="res://cenas/grupo_aliens.tscn" id="3_b30p5"]
+[ext_resource type="FontFile" uid="uid://b8qxohj7kh7a1" path="res://assets]/Assets Space Invades/fonts/atari-classic-font/AtariClassic-gry3.ttf" id="4_b30p5"]
+[ext_resource type="PackedScene" uid="uid://dno3xg2eos2hh" path="res://cenas/bloco.tscn" id="5_5wwvk"]
+[ext_resource type="Script" uid="uid://c7857ftyonu2q" path="res://cenas/chao.gd" id="6_bhvw8"]
+[ext_resource type="Script" uid="uid://b46j83k25nrsf" path="res://cenas/area_game_over.gd" id="7_l8342"]
+[ext_resource type="PackedScene" path="res://cenas/dicas_makoto.tscn" id="8_dicas"]
+[ext_resource type="Script" path="res://cenas/fundo_espacial.gd" id="9_fundo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8o4j"]
+size = Vector2(256, 26)
+
+[node name="main" type="Node" unique_id=2095451740]
+script = ExtResource("1_5wwvk")
+
+[node name="FundoEspacial" type="Node2D" parent="."]
+z_index = -100
+script = ExtResource("9_fundo")
+
+[node name="jogador" parent="." unique_id=1366716443 instance=ExtResource("1_t4ukd")]
+position = Vector2(127, 192)
+
+[node name="grupoAliens" parent="." unique_id=727872182 instance=ExtResource("3_b30p5")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1468542012]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 5.0
+offset_bottom = 55.0
+grow_horizontal = 2
+
+[node name="TituloPontos" type="Label" parent="VBoxContainer" unique_id=172072178]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b30p5")
+text = "Pontos:"
+horizontal_alignment = 1
+
+[node name="LabelPontos" type="Label" parent="VBoxContainer" unique_id=1004626689]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+theme_override_fonts/font = ExtResource("4_b30p5")
+text = "0"
+horizontal_alignment = 1
+
+[node name="chao" type="Node" parent="." unique_id=1207973984]
+script = ExtResource("6_bhvw8")
+
+[node name="areaGameOver" type="Area2D" parent="." unique_id=2070938693]
+position = Vector2(128, 272)
+script = ExtResource("7_l8342")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaGameOver" unique_id=1353220152]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_j8o4j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1682879633]
+
+[node name="FlashBranco" type="ColorRect" parent="CanvasLayer" unique_id=1993625090]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DicasMakoto" parent="CanvasLayer" instance=ExtResource("8_dicas")]
+
+[node name="bases" type="Node" parent="." unique_id=1814188464]
+
+[node name="base" type="Node2D" parent="bases" unique_id=1312544071]
+position = Vector2(-88, 0)
+
+[node name="bloco" parent="bases/base" unique_id=1367750545 instance=ExtResource("5_5wwvk")]
+position = Vector2(112, 160)
+
+[node name="bloco2" parent="bases/base" unique_id=1263821593 instance=ExtResource("5_5wwvk")]
+position = Vector2(116, 160)
+
+[node name="bloco3" parent="bases/base" unique_id=708574646 instance=ExtResource("5_5wwvk")]
+position = Vector2(120, 160)
+
+[node name="bloco4" parent="bases/base" unique_id=502301120 instance=ExtResource("5_5wwvk")]
+position = Vector2(124, 160)
+
+[node name="bloco5" parent="bases/base" unique_id=1409820415 instance=ExtResource("5_5wwvk")]
+position = Vector2(128, 160)
+
+[node name="bloco6" parent="bases/base" unique_id=1863924468 instance=ExtResource("5_5wwvk")]
+position = Vector2(132, 160)
+
+[node name="bloco7" parent="bases/base" unique_id=29207481 instance=ExtResource("5_5wwvk")]
+position = Vector2(136, 160)
+
+[node name="bloco8" parent="bases/base" unique_id=122338038 instance=ExtResource("5_5wwvk")]
+position = Vector2(140, 160)
+
+[node name="base2" type="Node2D" parent="bases" unique_id=1167306861]
+position = Vector2(-32, 0)
+
+[node name="bloco" parent="bases/base2" unique_id=1507305098 instance=ExtResource("5_5wwvk")]
+position = Vector2(112, 160)
+
+[node name="bloco2" parent="bases/base2" unique_id=1641148365 instance=ExtResource("5_5wwvk")]
+position = Vector2(116, 160)
+
+[node name="bloco3" parent="bases/base2" unique_id=1473275372 instance=ExtResource("5_5wwvk")]
+position = Vector2(120, 160)
+
+[node name="bloco4" parent="bases/base2" unique_id=2017266619 instance=ExtResource("5_5wwvk")]
+position = Vector2(124, 160)
+
+[node name="bloco5" parent="bases/base2" unique_id=855302132 instance=ExtResource("5_5wwvk")]
+position = Vector2(128, 160)
+
+[node name="bloco6" parent="bases/base2" unique_id=1910371069 instance=ExtResource("5_5wwvk")]
+position = Vector2(132, 160)
+
+[node name="bloco7" parent="bases/base2" unique_id=1668663605 instance=ExtResource("5_5wwvk")]
+position = Vector2(136, 160)
+
+[node name="bloco8" parent="bases/base2" unique_id=1646843644 instance=ExtResource("5_5wwvk")]
+position = Vector2(140, 160)
+
+[node name="base3" type="Node2D" parent="bases" unique_id=2052144599]
+position = Vector2(32, 0)
+
+[node name="bloco" parent="bases/base3" unique_id=1114389229 instance=ExtResource("5_5wwvk")]
+position = Vector2(112, 160)
+
+[node name="bloco2" parent="bases/base3" unique_id=1012223662 instance=ExtResource("5_5wwvk")]
+position = Vector2(116, 160)
+
+[node name="bloco3" parent="bases/base3" unique_id=903391867 instance=ExtResource("5_5wwvk")]
+position = Vector2(120, 160)
+
+[node name="bloco4" parent="bases/base3" unique_id=817121711 instance=ExtResource("5_5wwvk")]
+position = Vector2(124, 160)
+
+[node name="bloco5" parent="bases/base3" unique_id=1220567322 instance=ExtResource("5_5wwvk")]
+position = Vector2(128, 160)
+
+[node name="bloco6" parent="bases/base3" unique_id=1885297563 instance=ExtResource("5_5wwvk")]
+position = Vector2(132, 160)
+
+[node name="bloco7" parent="bases/base3" unique_id=1575622354 instance=ExtResource("5_5wwvk")]
+position = Vector2(136, 160)
+
+[node name="bloco8" parent="bases/base3" unique_id=485119422 instance=ExtResource("5_5wwvk")]
+position = Vector2(140, 160)
+
+[node name="base4" type="Node2D" parent="bases" unique_id=832962599]
+position = Vector2(96, 0)
+
+[node name="bloco" parent="bases/base4" unique_id=302587205 instance=ExtResource("5_5wwvk")]
+position = Vector2(112, 160)
+
+[node name="bloco2" parent="bases/base4" unique_id=987265822 instance=ExtResource("5_5wwvk")]
+position = Vector2(116, 160)
+
+[node name="bloco3" parent="bases/base4" unique_id=1040469432 instance=ExtResource("5_5wwvk")]
+position = Vector2(120, 160)
+
+[node name="bloco4" parent="bases/base4" unique_id=718772626 instance=ExtResource("5_5wwvk")]
+position = Vector2(124, 160)
+
+[node name="bloco5" parent="bases/base4" unique_id=834686749 instance=ExtResource("5_5wwvk")]
+position = Vector2(128, 160)
+
+[node name="bloco6" parent="bases/base4" unique_id=610493143 instance=ExtResource("5_5wwvk")]
+position = Vector2(132, 160)
+
+[node name="bloco7" parent="bases/base4" unique_id=1282787717 instance=ExtResource("5_5wwvk")]
+position = Vector2(136, 160)
+
+[node name="bloco8" parent="bases/base4" unique_id=1705487469 instance=ExtResource("5_5wwvk")]
+position = Vector2(140, 160)
+
+[connection signal="area_entered" from="areaGameOver" to="areaGameOver" method="_on_area_entered"]

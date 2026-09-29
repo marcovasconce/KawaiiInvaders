@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bhdlcmjcb8iyj"]
+
+[ext_resource type="Script" uid="uid://bjtmgpjjjfchl" path="res://cenas/bonus.gd" id="1_7ah8e"]
+[ext_resource type="Texture2D" uid="uid://b6chto61r7vbi" path="res://assets]/Assets Space Invades/Sprites/mymelody.png" id="2_fix7m"]
+[ext_resource type="Texture2D" uid="uid://dbk0ligfgpdl3" path="res://assets]/Assets Space Invades/Sprites/images-removebg-preview.png" id="3_fix7m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j8o4j"]
+radius = 24.0
+
+[node name="Bonus" type="CharacterBody2D" unique_id=2051847166 groups=["aliens"]]
+position = Vector2(232, 64)
+script = ExtResource("1_7ah8e")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=709672968]
+scale = Vector2(0.04865772, 0.04865772)
+texture = ExtResource("2_fix7m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508297440]
+shape = SubResource("CircleShape2D_j8o4j")
+
+[node name="explosao" type="Sprite2D" parent="." unique_id=1218159364]
+visible = false
+position = Vector2(0, -4.7683716e-07)
+scale = Vector2(-0.060500484, 0.060499866)
+texture = ExtResource("3_fix7m")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c0rjcipcnrk10"
+path="res://.godot/imported/VitoriaHelloKitty.mp3-833322ea84a2a76ebb0714ee139f10a2.mp3str"
+
+[deps]
+
+source_file="res://assets]/Assets Space Invades/sfx/VitoriaHelloKitty.mp3"
+dest_files=["res://.godot/imported/VitoriaHelloKitty.mp3-833322ea84a2a76ebb0714ee139f10a2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

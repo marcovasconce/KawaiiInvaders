@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dwemaq6vjvmq5"]
+
+[ext_resource type="FontFile" uid="uid://b8qxohj7kh7a1" path="res://assets]/Assets Space Invades/fonts/atari-classic-font/AtariClassic-gry3.ttf" id="1_font"]
+[ext_resource type="Script" uid="uid://d3g43rkqjk4hj" path="res://cenas/game_over.gd" id="2_script"]
+
+[node name="Vitoria" type="Node2D" unique_id=139524667]
+script = ExtResource("2_script")
+
+[node name="Label" type="Label" parent="." unique_id=1785048995]
+offset_top = 80.0
+offset_right = 256.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(1, 0.4, 0.85, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 13
+text = "VITORIA!
+VOCE DERROTOU
+TODOS OS ALIENS!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1751627589]
+offset_left = 16.0
+offset_top = 176.0
+offset_right = 234.0
+offset_bottom = 202.0
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 14
+text = "JOGAR NOVAMENTE"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

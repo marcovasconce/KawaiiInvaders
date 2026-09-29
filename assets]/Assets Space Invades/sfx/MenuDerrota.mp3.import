@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dqokw45m30rfo"
+path="res://.godot/imported/MenuDerrota.mp3-e7e570273bfaefee4ae31da5b2619134.mp3str"
+
+[deps]
+
+source_file="res://assets]/Assets Space Invades/sfx/MenuDerrota.mp3"
+dest_files=["res://.godot/imported/MenuDerrota.mp3-e7e570273bfaefee4ae31da5b2619134.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

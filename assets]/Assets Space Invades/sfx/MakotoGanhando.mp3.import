@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dwbq18fa7ftg0"
+path="res://.godot/imported/MakotoGanhando.mp3-8e676e6b1fe8596afcd667f3cde8f05f.mp3str"
+
+[deps]
+
+source_file="res://assets]/Assets Space Invades/sfx/MakotoGanhando.mp3"
+dest_files=["res://.godot/imported/MakotoGanhando.mp3-8e676e6b1fe8596afcd667f3cde8f05f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

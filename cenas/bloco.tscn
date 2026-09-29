@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dno3xg2eos2hh"]
+
+[ext_resource type="Script" uid="uid://dp8kxs3alj5hb" path="res://cenas/bloco.gd" id="1_1iuas"]
+[ext_resource type="Texture2D" uid="uid://biwd7xdxygug" path="res://assets]/Assets Space Invades/Sprites/bloquehellokitty.png" id="1_8fjef"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8o4j"]
+size = Vector2(4.5, 4.625)
+
+[sub_resource type="Animation" id="Animation_6rmkm"]
+resource_name = "danificado"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_8fjef"]
+resource_name = "new_animation"
+
+[sub_resource type="Animation" id="Animation_1iuas"]
+resource_name = "normal"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6rmkm"]
+_data = {
+&"danificado": SubResource("Animation_6rmkm"),
+&"new_animation": SubResource("Animation_8fjef"),
+&"normal": SubResource("Animation_1iuas")
+}
+
+[node name="bloco" type="StaticBody2D" unique_id=1367750545 groups=["blocos"]]
+script = ExtResource("1_1iuas")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=727420858]
+texture = ExtResource("1_8fjef")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=968699003]
+scale = Vector2(0.880009, 0.8651426)
+shape = SubResource("RectangleShape2D_j8o4j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=984645395]
+libraries/ = SubResource("AnimationLibrary_6rmkm")

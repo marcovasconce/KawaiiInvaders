@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://ckxelugo8ugwl"]
+
+[ext_resource type="Script" uid="uid://b57c0p4ys00kt" path="res://jogador.gd" id="1_06a7y"]
+[ext_resource type="Texture2D" uid="uid://xbtsqa0o78dv" path="res://assets]/Assets Space Invades/Sprites/rpg_maker_xp_sprite___hello_kitty__red__by_kittykun123_dajyaga-fullview-removebg-preview.png" id="2_tyx0c"]
+[ext_resource type="Texture2D" uid="uid://bmd53w0ut3opu" path="res://assets]/Assets Space Invades/Sprites/jugador.png" id="2_w41yl"]
+[ext_resource type="AudioStream" uid="uid://cvbvfnt4ila5n" path="res://assets]/Assets Space Invades/sfx/shoot.wav" id="4_tyx0c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhvw8"]
+size = Vector2(14.14151, 5.124999)
+
+[sub_resource type="Animation" id="Animation_w41yl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("goatedInvader:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_qqe4b"]
+resource_name = "destruicao"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("goatedInvader:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"eliminado"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ufweb"]
+resource_name = "walk_direita"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("goatedInvader:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20833333, 0.5, 0.7083333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_tyx0c"]
+resource_name = "walk_esquerda"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("goatedInvader:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.5, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ufweb"]
+_data = {
+&"RESET": SubResource("Animation_w41yl"),
+&"destruicao": SubResource("Animation_qqe4b"),
+&"walk_direita": SubResource("Animation_ufweb"),
+&"walk_esquerda": SubResource("Animation_tyx0c")
+}
+
+[node name="jogador" type="CharacterBody2D" unique_id=1366716443 groups=["tanque"]]
+script = ExtResource("1_06a7y")
+velocidade_dash = 290.0
+metadata/_edit_group_ = true
+
+[node name="goatedInvader" type="Sprite2D" parent="." unique_id=1096265324]
+position = Vector2(4.7683716e-07, 1)
+scale = Vector2(0.6238857, 0.44571435)
+texture = ExtResource("2_tyx0c")
+hframes = 4
+vframes = 4
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2042630747 groups=["tanque"]]
+position = Vector2(0, 1)
+scale = Vector2(2.12, 5.200001)
+shape = SubResource("RectangleShape2D_bhvw8")
+
+[node name="alvaro" type="Marker2D" parent="." unique_id=1303861451]
+position = Vector2(0, -14.999999)
+scale = Vector2(1.9999676, 120.000015)
+
+[node name="timerDisparo" type="Timer" parent="." unique_id=1040861627]
+wait_time = 0.4
+one_shot = true
+
+[node name="booringInvader" type="Sprite2D" parent="." unique_id=1031675490]
+visible = false
+scale = Vector2(1.1449001, 1)
+texture = ExtResource("2_w41yl")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1445365594]
+libraries/ = SubResource("AnimationLibrary_ufweb")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=395159506]
+stream = ExtResource("4_tyx0c")
+
+[connection signal="timeout" from="timerDisparo" to="." method="_on_timer_disparo_timeout"]

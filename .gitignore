@@ -1,0 +1,15 @@
+# Godot 4+
+.godot/
+
+# Exportações / builds
+build/
+dist/
+exports/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/

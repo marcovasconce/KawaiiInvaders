@@ -1,0 +1,273 @@
+[gd_scene format=3 uid="uid://oi3v3mbrhh03"]
+
+[ext_resource type="Script" uid="uid://bkdvi3bu84gg5" path="res://cenas/boss_arena.gd" id="1_arena"]
+[ext_resource type="Script" uid="uid://d4b5x64abdgkk" path="res://cenas/boss.gd" id="2_boss"]
+[ext_resource type="PackedScene" uid="uid://ckxelugo8ugwl" path="res://cenas/jogador.tscn" id="3_player"]
+[ext_resource type="Script" uid="uid://c7857ftyonu2q" path="res://cenas/chao.gd" id="4_chao"]
+[ext_resource type="Texture2D" uid="uid://dsqgpkoqh3yrq" path="res://assets]/Assets Space Invades/Sprites/tung_boss_completo.png" id="5_tung"]
+[ext_resource type="FontFile" uid="uid://b8qxohj7kh7a1" path="res://assets]/Assets Space Invades/fonts/atari-classic-font/AtariClassic-gry3.ttf" id="6_font"]
+[ext_resource type="PackedScene" path="res://cenas/dicas_makoto.tscn" id="7_dicas"]
+[ext_resource type="Script" uid="uid://dpi4mxdhh0t0v" path="res://cenas/fundo_espacial.gd" id="8_fundo"]
+[ext_resource type="Script" uid="uid://cce1050t4a0va" path="res://cenas/entrada_boss_efeitos.gd" id="9_entrada_efeitos"]
+
+[sub_resource type="RectangleShape2D" id="BossShape"]
+size = Vector2(48, 44)
+
+[sub_resource type="StyleBoxFlat" id="AvisoPanel"]
+bg_color = Color(0.015, 0.04, 0.1, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.65, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="BarraVazia"]
+bg_color = Color(0.04, 0.09, 0.12, 0.94)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.39, 0.45, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="VidaFill"]
+bg_color = Color(0.18, 0.82, 0.35, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="PosturaFill"]
+bg_color = Color(1, 0.78, 0.16, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="BossArena" type="Node" unique_id=534238707]
+script = ExtResource("1_arena")
+
+[node name="FundoEspacial" type="Node2D" parent="." unique_id=2110851153]
+z_index = -100
+script = ExtResource("8_fundo")
+modo_boss = true
+
+[node name="chao" type="Node" parent="." unique_id=356407488]
+script = ExtResource("4_chao")
+
+[node name="jogador" parent="." unique_id=1502224767 instance=ExtResource("3_player")]
+position = Vector2(127, 192)
+iniciar_como_makoto = true
+
+[node name="EntradaEfeitos" type="Node2D" parent="." unique_id=2047680475]
+z_index = 15
+script = ExtResource("9_entrada_efeitos")
+
+[node name="Boss" type="CharacterBody2D" parent="." unique_id=1183848066 groups=["boss"]]
+position = Vector2(128, 72)
+script = ExtResource("2_boss")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Boss" unique_id=620939655]
+texture_filter = 1
+position = Vector2(-8, -5)
+scale = Vector2(0.28125, 0.28125)
+texture = ExtResource("5_tung")
+hframes = 4
+vframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss" unique_id=689444408]
+position = Vector2(0, -2)
+shape = SubResource("BossShape")
+
+[node name="SpawnPoint" type="Marker2D" parent="Boss" unique_id=524027150]
+position = Vector2(0, 26)
+
+[node name="TimerDisparo" type="Timer" parent="Boss" unique_id=1525158257]
+wait_time = 0.95
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1491882703]
+
+[node name="FlashBranco" type="ColorRect" parent="CanvasLayer" unique_id=241521880]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DicasMakoto" parent="CanvasLayer" unique_id=1161286947 instance=ExtResource("7_dicas")]
+
+[node name="AvisoBoss" type="PanelContainer" parent="CanvasLayer" unique_id=253162651]
+offset_left = 13.0
+offset_top = 99.0
+offset_right = 241.0
+offset_bottom = 157.0
+theme_override_styles/panel = SubResource("AvisoPanel")
+
+[node name="Margem" type="MarginContainer" parent="CanvasLayer/AvisoBoss" unique_id=659625274]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="Aviso" type="Label" parent="CanvasLayer/AvisoBoss/Margem" unique_id=786507225]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.8, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0.05, 0.15, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 11
+text = "UM NOVO INIMIGO
+ESTA CHEGANDO..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InterfaceBoss" type="Control" parent="CanvasLayer" unique_id=1875131166]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BarraVida" type="ProgressBar" parent="CanvasLayer/InterfaceBoss" unique_id=1140959433]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 224.0
+offset_bottom = 20.0
+theme_override_styles/background = SubResource("BarraVazia")
+theme_override_styles/fill = SubResource("VidaFill")
+max_value = 300.0
+value = 300.0
+show_percentage = false
+
+[node name="MarcoSegundaFase" type="ColorRect" parent="CanvasLayer/InterfaceBoss/BarraVida" unique_id=25848876]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 1.0
+offset_right = 101.0
+offset_bottom = 11.0
+mouse_filter = 2
+color = Color(1, 0.8, 0.5, 0.8)
+
+[node name="NomePostura" type="Label" parent="CanvasLayer/InterfaceBoss" unique_id=833217347]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 71.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 6
+text = "POSTURA"
+
+[node name="BarraPostura" type="ProgressBar" parent="CanvasLayer/InterfaceBoss" unique_id=631801052]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 24.0
+offset_right = 191.0
+offset_bottom = 33.0
+theme_override_styles/background = SubResource("BarraVazia")
+theme_override_styles/fill = SubResource("PosturaFill")
+show_percentage = false
+
+[node name="AvisoAtaque" type="Label" parent="CanvasLayer/InterfaceBoss" unique_id=1645963452]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 108.0
+offset_right = 249.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(1, 0.82, 0.35, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 6
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="DashLabel" type="Label" parent="CanvasLayer/InterfaceBoss" unique_id=1912720611]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 233.0
+offset_right = 242.0
+offset_bottom = 244.0
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 6
+text = "X: DASH PRONTO"
+horizontal_alignment = 1
+
+[node name="BarraDash" type="ProgressBar" parent="CanvasLayer/InterfaceBoss" unique_id=1408631026]
+modulate = Color(0.4, 0.8, 1, 1)
+layout_mode = 0
+offset_left = 67.0
+offset_top = 248.0
+offset_right = 187.0
+offset_bottom = 252.0
+mouse_filter = 2
+value = 100.0
+show_percentage = false
+
+[node name="FinalTriste" type="Control" parent="CanvasLayer" unique_id=408449870]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Fundo" type="ColorRect" parent="CanvasLayer/FinalTriste" unique_id=432731900]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.015, 0.025, 0.07, 0.82)
+
+[node name="FraseVitoria" type="Label" parent="CanvasLayer/FinalTriste" unique_id=241992534]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 91.0
+offset_right = 238.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.04, 0.12, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 12
+text = "Voce vence."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FraseCusto" type="Label" parent="CanvasLayer/FinalTriste" unique_id=2047300460]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 127.0
+offset_right = 238.0
+offset_bottom = 153.0
+theme_override_colors/font_color = Color(0.48, 0.62, 0.82, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.04, 0.12, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 8
+text = "Mas a que custo?..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Boss/TimerDisparo" to="Boss" method="_on_timer_disparo_timeout"]

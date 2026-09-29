@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://cenas/boss_arena.tscn" id="1"]
+
+[node name="TungGodTest" instance=ExtResource("1")]
+pular_fase_quatro = true

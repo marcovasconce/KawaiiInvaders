@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://cenas/boss_tiro.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets]/Assets Space Invades/Sprites/cristal_chuva_tung.png" id="2_cristal"]
+
+[sub_resource type="RectangleShape2D" id="CristalShape"]
+size = Vector2(11, 17)
+
+[node name="CristalChuva" type="Area2D"]
+script = ExtResource("1_script")
+velocidade_rotacao = 0.0
+permite_parry = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.032, 0.018)
+texture = ExtResource("2_cristal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CristalShape")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

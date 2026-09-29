@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://5543bqdxu7sn"]
+
+[ext_resource type="Script" uid="uid://8qjn7hva35p2" path="res://cenas/missil.gd" id="1_gxv3c"]
+[ext_resource type="Texture2D" uid="uid://pdflarml21ku" path="res://assets]/Assets Space Invades/Sprites/image-removebg-preview.png" id="2_dg08w"]
+[ext_resource type="Texture2D" uid="uid://gox8rucfw3t1" path="res://assets]/Assets Space Invades/Sprites/disparoEnemigo.png" id="2_kal8i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8pkc"]
+size = Vector2(3, 7)
+
+[node name="missil" type="Area2D" unique_id=1991878921]
+script = ExtResource("1_gxv3c")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1808964270]
+scale = Vector2(0.027, -0.03)
+texture = ExtResource("2_dg08w")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=2093190436]
+visible = false
+texture = ExtResource("2_kal8i")
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=268591248]
+shape = SubResource("RectangleShape2D_r8pkc")
+metadata/_edit_group_ = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

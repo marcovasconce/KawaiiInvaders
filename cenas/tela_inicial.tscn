@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://deehnwm704ed2"]
+
+[ext_resource type="Script" uid="uid://h4f350wckcxt" path="res://cenas/tela_inicial.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://b8qxohj7kh7a1" path="res://assets]/Assets Space Invades/fonts/atari-classic-font/AtariClassic-gry3.ttf" id="2_font"]
+[ext_resource type="Texture2D" uid="uid://dquhvyue0iqpu" path="res://assets]/Assets Space Invades/Sprites/gatinha_astronauta_menu.png" id="3_astronauta"]
+[ext_resource type="Script" uid="uid://cwxiffao2aj7x" path="res://cenas/botao_menu_estilizado.gd" id="4_botao"]
+
+[sub_resource type="StyleBoxFlat" id="BotaoNormal"]
+bg_color = Color(0.49, 0.25, 0.8, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 3
+border_color = Color(0.88, 0.7, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.08, 0.02, 0.19, 0.7)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="BotaoHover"]
+bg_color = Color(0.65, 0.39, 0.94, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 3
+border_color = Color(1, 0.88, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.43, 0.17, 0.75, 0.7)
+shadow_size = 5
+
+[node name="TelaInicial" type="Control" unique_id=1230026527]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="Titulo" type="Label" parent="." unique_id=1993695642]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -117.0
+offset_top = 20.0
+offset_right = 117.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(1, 0.95, 1, 1)
+theme_override_colors/font_outline_color = Color(0.26, 0.07, 0.48, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "KAWAII
+INVADERS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Astronauta" type="TextureRect" parent="." unique_id=1844951717]
+texture_filter = 1
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.0
+offset_top = 69.0
+offset_right = 71.0
+offset_bottom = 211.0
+mouse_filter = 2
+texture = ExtResource("3_astronauta")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BotaoJogar" type="Button" parent="." unique_id=325006497]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 214.0
+offset_right = 75.0
+offset_bottom = 246.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.25, 0.08, 0.41, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("BotaoNormal")
+theme_override_styles/hover = SubResource("BotaoHover")
+theme_override_styles/focus = SubResource("BotaoHover")
+text = "JOGAR"
+script = ExtResource("4_botao")
+cor_acento = Color(0.76, 0.48, 1, 1)
+
+[connection signal="pressed" from="BotaoJogar" to="." method="_on_botao_jogar_pressed"]

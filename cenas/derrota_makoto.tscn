@@ -1,0 +1,190 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://cenas/resultado_makoto.gd" id="1_script"]
+[ext_resource type="FontFile" path="res://assets]/Assets Space Invades/fonts/atari-classic-font/AtariClassic-gry3.ttf" id="2_font"]
+[ext_resource type="Texture2D" path="res://assets]/Assets Space Invades/Sprites/makoto_morte.png" id="3_makoto"]
+[ext_resource type="Texture2D" path="res://assets]/Assets Space Invades/Sprites/tung_boss_completo.png" id="4_tung"]
+[ext_resource type="Script" path="res://cenas/botao_menu_estilizado.gd" id="5_botao"]
+
+[sub_resource type="StyleBoxFlat" id="Painel"]
+bg_color = Color(0.08, 0.025, 0.08, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.2, 0.36, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="Botao"]
+bg_color = Color(0.33, 0.08, 0.18, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.88, 0.27, 0.39, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="BotaoHover"]
+bg_color = Color(0.49, 0.11, 0.25, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.54, 0.64, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="BotaoDeus"]
+bg_color = Color(0.06, 0.25, 0.5, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.72, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="BotaoDeusHover"]
+bg_color = Color(0.1, 0.42, 0.68, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.62, 0.92, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="DerrotaMakoto" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+vitoria = false
+
+[node name="Cartao" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 16.0
+offset_right = 244.0
+offset_bottom = 251.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Painel")
+
+[node name="Titulo" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 29.0
+offset_right = 236.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(1, 0.53, 0.61, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0, 0.04, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "DERROTA"
+horizontal_alignment = 1
+
+[node name="Subtitulo" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 57.0
+offset_right = 236.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.96, 0.43, 0.55, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 8
+text = "MAKOTO CAIU"
+horizontal_alignment = 1
+
+[node name="TungVulto" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(183, 114)
+scale = Vector2(0.15, 0.15)
+modulate = Color(0.45, 0.18, 0.26, 0.72)
+texture = ExtResource("4_tung")
+hframes = 4
+vframes = 6
+frame = 15
+
+[node name="ArteMakoto" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(112, 117)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_makoto")
+hframes = 4
+frame = 3
+
+[node name="Mensagem" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 177.0
+offset_right = 236.0
+offset_bottom = 189.0
+theme_override_colors/font_color = Color(1, 0.73, 0.78, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 7
+text = "LEVANTE-SE E TENTE DE NOVO"
+horizontal_alignment = 1
+
+[node name="DesafiarTungGod" type="Button" parent="."]
+visible = false
+offset_left = 27.0
+offset_top = 194.0
+offset_right = 227.0
+offset_bottom = 218.0
+theme_override_colors/font_color = Color(0.8, 0.95, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.08, 0.18, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("BotaoDeus")
+theme_override_styles/hover = SubResource("BotaoDeusHover")
+theme_override_styles/focus = SubResource("BotaoDeusHover")
+text = "DESAFIAR TUNG GOD"
+script = ExtResource("5_botao")
+cor_acento = Color(0.3, 0.8, 1, 1)
+
+[node name="JogarNovamente" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 221.0
+offset_right = 222.0
+offset_bottom = 239.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 7
+theme_override_styles/normal = SubResource("Botao")
+theme_override_styles/hover = SubResource("BotaoHover")
+theme_override_styles/focus = SubResource("BotaoHover")
+text = "TENTAR NOVAMENTE"
+script = ExtResource("5_botao")
+cor_acento = Color(1, 0.35, 0.52, 1)
+
+[node name="Menu" type="Button" parent="."]
+offset_left = 76.0
+offset_top = 241.0
+offset_right = 178.0
+offset_bottom = 255.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("Botao")
+theme_override_styles/hover = SubResource("BotaoHover")
+theme_override_styles/focus = SubResource("BotaoHover")
+text = "MENU"
+script = ExtResource("5_botao")
+cor_acento = Color(1, 0.35, 0.52, 1)
+
+[connection signal="pressed" from="JogarNovamente" to="." method="_on_jogar_novamente_pressed"]
+[connection signal="pressed" from="DesafiarTungGod" to="." method="_on_desafiar_tung_god_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
